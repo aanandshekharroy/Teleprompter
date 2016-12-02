@@ -27,6 +27,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.theseus.teleprompter.MainActivity"/>
         </activity>
+
+        <provider
+            android:authorities="com.example.theseus.teleprompter"
+            android:name=".data.ScriptProvider"/>
     </application>
 
 </manifest>
