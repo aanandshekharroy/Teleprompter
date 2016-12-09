@@ -124,15 +124,53 @@ public class ScriptProvider extends ContentProvider{
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
+        final SQLiteDatabase db=mScriptDBHelper.getWritableDatabase();
+
         int match=sUriMatcher.match(uri);
+        int rowsDeleted = 0;
         switch (match){
+            case ALL_SCRIPTS:
+                rowsDeleted=db.delete(ScriptContract.ScriptEntry.TABLE_NAME,"1",null);
+                break;
             case SCRIPT_WITH_ID:
+                selectionArgs=new String[]{ String.valueOf(ScriptContract.ScriptEntry.getIdFromUri(uri))};
+                rowsDeleted=db.delete(ScriptContract.ScriptEntry.TABLE_NAME,"_ID=?",selectionArgs);
+                break;
+            default:
+                try {
+                    throw new Exception("Invalid uri: "+uri);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
         }
-        return 0;
+        if(rowsDeleted>0){
+            getContext().getContentResolver().notifyChange(uri,null);
+        }
+        db.close();
+        return rowsDeleted;
     }
 
     @Override
     public int update(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
-        return 0;
+        int match=sUriMatcher.match(uri);
+        SQLiteDatabase db=mScriptDBHelper.getWritableDatabase();
+        int rowsUpdated=0;
+        switch (match){
+            case SCRIPT_WITH_ID:
+                selectionArgs=new String[]{String.valueOf(ScriptContract.ScriptEntry.getIdFromUri(uri))};
+                rowsUpdated=db.update(ScriptContract.ScriptEntry.TABLE_NAME,values,"_ID=?",selectionArgs);
+                break;
+            default:
+                try {
+                    throw new Exception("Invalid Uri: "+uri);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+        }
+        if(rowsUpdated>0){
+            getContext().getContentResolver().notifyChange(uri,null);
+        }
+        db.close();
+        return rowsUpdated;
     }
 }
