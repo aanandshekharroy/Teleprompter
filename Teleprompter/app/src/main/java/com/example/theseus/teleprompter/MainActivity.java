@@ -11,14 +11,21 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import static com.example.theseus.teleprompter.R.id.fab;
 
 public class MainActivity extends AppCompatActivity {
     private Context mContext;
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mAdView=(AdView)findViewById(R.id.adView);
+        AdRequest adRequest=new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         mContext=this;

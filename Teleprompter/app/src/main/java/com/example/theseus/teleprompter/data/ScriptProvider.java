@@ -4,6 +4,7 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.media.UnsupportedSchemeException;
 import android.net.Uri;
 import android.os.Build;
@@ -96,11 +97,37 @@ public class ScriptProvider extends ContentProvider{
     @Nullable
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        return null;
+        int matched=sUriMatcher.match(uri);
+        final SQLiteDatabase db=mScriptDBHelper.getWritableDatabase();
+        Uri retUri = null;
+        switch (matched){
+            case ALL_SCRIPTS:
+                long _id=db.insert(ScriptContract.ScriptEntry.TABLE_NAME,null,values);
+                if(_id>0){
+                    retUri= ScriptContract.ScriptEntry.buildUriFromId(_id);
+                }else {
+                    throw new android.database.SQLException("Failed to insert: "+uri);
+                }
+                break;
+            default:
+                try {
+                    throw new Exception("Invalid uri: "+uri);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+        }
+        getContext().getContentResolver().notifyChange(uri,null);
+        db.close();
+        return retUri;
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
+        int match=sUriMatcher.match(uri);
+        switch (match){
+            case SCRIPT_WITH_ID:
+        }
         return 0;
     }
 
