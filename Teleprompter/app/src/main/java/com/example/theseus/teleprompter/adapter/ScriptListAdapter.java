@@ -51,11 +51,12 @@ public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.Sc
     }
     public class ScriptListAdapterViewHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.title)
+//        @BindView(R.id.title)
         TextView title;
         public ScriptListAdapterViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(itemView);
+//            ButterKnife.bind(itemView);
+            title=(TextView)itemView.findViewById(R.id.title);
         }
     }
 

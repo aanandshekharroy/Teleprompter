@@ -63,7 +63,11 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        Log.d(LOG_TAG,"data count: "+data.getCount()+", title=  "+data.getInt(COLUMN_TITLE));
+        if(data.getCount()>0){
+            Log.d(LOG_TAG,"data count: "+data.getCount());
+//            +", title=  "+data.getString(COLUMN_TITLE));
+        }
+
         mScriptListAdapter.swapCursor(data);
     }
 
