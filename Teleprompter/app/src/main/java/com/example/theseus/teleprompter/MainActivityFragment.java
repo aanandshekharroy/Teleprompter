@@ -32,9 +32,9 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
             ScriptContract.ScriptEntry.COLUMN_TITLE,
             ScriptContract.ScriptEntry.COLUMN_CONTENT
     };
-    static final int COLUMN_ID=0;
+    public static final int COLUMN_ID=0;
     public static final int COLUMN_TITLE=1;
-    static final int COLUMN_CONTENT=2;
+    public static final int COLUMN_CONTENT=2;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

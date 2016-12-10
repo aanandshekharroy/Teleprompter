@@ -1,15 +1,20 @@
 package com.example.theseus.teleprompter.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.theseus.teleprompter.AddScriptActivity;
 import com.example.theseus.teleprompter.MainActivityFragment;
 import com.example.theseus.teleprompter.R;
+import com.example.theseus.teleprompter.data.ScriptContract;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +27,7 @@ public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.Sc
 
     private Cursor mCursor;
     private Context mContext;
+//    private String TITLE
     public ScriptListAdapter(Context context){
         mContext=context;
     }
@@ -49,14 +55,30 @@ public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.Sc
         mCursor=cursor;
         notifyDataSetChanged();
     }
-    public class ScriptListAdapterViewHolder extends RecyclerView.ViewHolder{
+    public class ScriptListAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
 //        @BindView(R.id.title)
         TextView title;
+        ImageButton imageButton;
         public ScriptListAdapterViewHolder(View itemView) {
             super(itemView);
 //            ButterKnife.bind(itemView);
             title=(TextView)itemView.findViewById(R.id.title);
+            imageButton=(ImageButton)itemView.findViewById(R.id.edit);
+            imageButton.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(v.getId()==imageButton.getId()){
+                int pos=getAdapterPosition();
+                mCursor.moveToPosition(pos);
+                Intent addScriptintent=new Intent(mContext,AddScriptActivity.class);
+                addScriptintent.putExtra(ScriptContract.ScriptEntry._ID,mCursor.getLong(MainActivityFragment.COLUMN_ID));
+                addScriptintent.putExtra(ScriptContract.ScriptEntry.COLUMN_TITLE,mCursor.getString(MainActivityFragment.COLUMN_TITLE));
+                addScriptintent.putExtra(ScriptContract.ScriptEntry.COLUMN_CONTENT,mCursor.getString(MainActivityFragment.COLUMN_CONTENT));
+                mContext.startActivity(addScriptintent);
+            }
         }
     }
 

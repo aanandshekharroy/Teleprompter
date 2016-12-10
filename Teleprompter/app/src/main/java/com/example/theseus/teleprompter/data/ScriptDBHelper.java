@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class ScriptDBHelper extends SQLiteOpenHelper {
     static final String DATABASE_NAME="scripts.db";
-    private static final int DATABASE_VERSION=1;
+    private static final int DATABASE_VERSION=2;
     public ScriptDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
