@@ -20,6 +20,7 @@ public class AddScriptActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mAdView=(AdView)findViewById(R.id.adView);
+        mAdView.setAdListener(new ToastListener(this));
         AdRequest adRequest=new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
     }

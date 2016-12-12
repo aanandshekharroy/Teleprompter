@@ -8,4 +8,8 @@
     <string name="content">Content</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
+    <!--<string name="app_name">Android Search Functionality</string>-->
+    <string name="app_label"> Search Feature</string>
+    <string name="search_hint">Search Fruit</string>
+    <string name="search_view">Enter search</string>
 </resources>
