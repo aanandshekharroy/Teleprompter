@@ -10,12 +10,14 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 
 /**
  * Created by theseus on 3/12/16.
  */
 
 public class ScriptProvider extends ContentProvider{
+    private static final String LOG_TAG=ScriptProvider.class.getSimpleName();
     static final int ALL_SCRIPTS=0;
     static final int SCRIPT_WITH_ID=1;
     static final int SCRIPT_WITH_SEARCH_KEY=2;
@@ -40,7 +42,9 @@ public class ScriptProvider extends ContentProvider{
     @Override
     public Cursor query(Uri uri, String[] projection, String selection, String[] selectionArgs, String sortOrder) {
         Cursor retCursor = null;
-        switch (sUriMatcher.match(uri)){
+        int match=sUriMatcher.match(uri);
+        Log.d(LOG_TAG,"query match: "+match);
+        switch (match){
             case ALL_SCRIPTS:
                 retCursor=getAllScripts(uri,projection,sortOrder);
                 break;
@@ -50,8 +54,17 @@ public class ScriptProvider extends ContentProvider{
             case SCRIPT_WITH_SEARCH_KEY:
                 retCursor=getScriptsFromSearchKey(uri,projection,sortOrder);
                 break;
+            default:
+                try {
+                    throw new Exception("Invalid url: "+uri);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
         }
-        retCursor.setNotificationUri(getContext().getContentResolver(),uri);
+        if(retCursor!=null){
+            retCursor.setNotificationUri(getContext().getContentResolver(),uri);
+        }
+
         return retCursor;
     }
 

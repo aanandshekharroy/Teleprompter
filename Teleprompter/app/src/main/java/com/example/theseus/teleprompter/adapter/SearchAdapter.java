@@ -1,5 +1,7 @@
 package com.example.theseus.teleprompter.adapter;
 
+import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
 
 /**
@@ -9,5 +11,11 @@ import android.support.v7.widget.RecyclerView;
 public class SearchAdapter {
     private SearchAdapter mSearchAdapter;
     private RecyclerView mRecyclerView;
+    private Context mContext;
+    public SearchAdapter(Context context) {
+        mContext=context;
+    }
 
+    public void swapCursor(Cursor data) {
+    }
 }
