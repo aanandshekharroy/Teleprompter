@@ -66,6 +66,7 @@ public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.Sc
             title=(TextView)itemView.findViewById(R.id.title);
             imageButton=(ImageButton)itemView.findViewById(R.id.edit);
             imageButton.setOnClickListener(this);
+
         }
 
         @Override
