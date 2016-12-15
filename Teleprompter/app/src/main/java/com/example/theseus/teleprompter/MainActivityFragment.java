@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.theseus.teleprompter.adapter.ScriptListAdapter;
 import com.example.theseus.teleprompter.data.ScriptContract;
@@ -25,6 +26,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
     int LOADER_ID=1;
     private ScriptListAdapter mScriptListAdapter;
     private RecyclerView mRecyclerView;
+    private TextView mEmptyView;
     public MainActivityFragment() {
     }
     public static String[] SCRIPT_POJECTION=new String[]{
@@ -38,11 +40,20 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mScriptListAdapter=new ScriptListAdapter(getActivity());
+
+//        mScriptListAdapter=new ScriptListAdapter(getActivity());
 
         View rootView=inflater.inflate(R.layout.fragment_main, container, false);
+        mEmptyView=(TextView)rootView.findViewById(R.id.empty_view);
         mRecyclerView=(RecyclerView)rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.setAdapter(mScriptListAdapter);
+        mScriptListAdapter=new ScriptListAdapter(getActivity(), new ScriptListAdapter.ScriptListAdapterOnClickHandler() {
+            @Override
+            public void onClick(ScriptListAdapter.ScriptListAdapterViewHolder vh) {
+                int pos=vh.getAdapterPosition();
+            }
+        },mEmptyView);
         mRecyclerView.setAdapter(mScriptListAdapter);
         return rootView;
     }

@@ -27,9 +27,12 @@ public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.Sc
 
     private Cursor mCursor;
     private Context mContext;
-//    private String TITLE
-    public ScriptListAdapter(Context context){
+    final private ScriptListAdapterOnClickHandler mScriptListAdapterOnClickHandler ;
+    final private View mEmptyView;
+    public ScriptListAdapter(Context context,ScriptListAdapterOnClickHandler ln,View emptyView){
         mContext=context;
+        mScriptListAdapterOnClickHandler=ln;
+        mEmptyView=emptyView;
     }
     @Override
     public ScriptListAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -62,11 +65,10 @@ public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.Sc
         ImageButton imageButton;
         public ScriptListAdapterViewHolder(View itemView) {
             super(itemView);
-//            ButterKnife.bind(itemView);
             title=(TextView)itemView.findViewById(R.id.title);
             imageButton=(ImageButton)itemView.findViewById(R.id.edit);
             imageButton.setOnClickListener(this);
-
+            itemView.setOnClickListener(this);
         }
 
         @Override
@@ -81,6 +83,10 @@ public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.Sc
                 mContext.startActivity(addScriptintent);
             }
         }
+
+    }
+    public static interface ScriptListAdapterOnClickHandler{
+        void onClick(ScriptListAdapterViewHolder vh);
     }
 
 }
