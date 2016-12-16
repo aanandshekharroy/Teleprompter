@@ -57,6 +57,9 @@ public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.Sc
     public void swapCursor(Cursor cursor){
         mCursor=cursor;
         notifyDataSetChanged();
+        if(mCursor!=null&&mCursor.getCount()==0){
+            mEmptyView.setVisibility(View.VISIBLE);
+        }
     }
     public class ScriptListAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -81,6 +84,8 @@ public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.Sc
                 addScriptintent.putExtra(ScriptContract.ScriptEntry.COLUMN_TITLE,mCursor.getString(MainActivityFragment.COLUMN_TITLE));
                 addScriptintent.putExtra(ScriptContract.ScriptEntry.COLUMN_CONTENT,mCursor.getString(MainActivityFragment.COLUMN_CONTENT));
                 mContext.startActivity(addScriptintent);
+            }else {
+                mScriptListAdapterOnClickHandler.onClick(this);
             }
         }
 

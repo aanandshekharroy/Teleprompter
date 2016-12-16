@@ -1,5 +1,7 @@
 package com.example.theseus.teleprompter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,9 +16,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.theseus.teleprompter.adapter.DetailActivity;
 import com.example.theseus.teleprompter.adapter.ScriptListAdapter;
 import com.example.theseus.teleprompter.data.ScriptContract;
+
+import static android.os.Build.VERSION_CODES.M;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -27,6 +33,8 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
     private ScriptListAdapter mScriptListAdapter;
     private RecyclerView mRecyclerView;
     private TextView mEmptyView;
+    private Context mContext;
+    private Cursor mCursor;
     public MainActivityFragment() {
     }
     public static String[] SCRIPT_POJECTION=new String[]{
@@ -44,6 +52,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
 //        mScriptListAdapter=new ScriptListAdapter(getActivity());
 
         View rootView=inflater.inflate(R.layout.fragment_main, container, false);
+        mContext=getContext();
         mEmptyView=(TextView)rootView.findViewById(R.id.empty_view);
         mRecyclerView=(RecyclerView)rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -52,6 +61,13 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
             @Override
             public void onClick(ScriptListAdapter.ScriptListAdapterViewHolder vh) {
                 int pos=vh.getAdapterPosition();
+                mCursor.moveToPosition(pos);
+                Intent detailActivity=new Intent(mContext,DetailActivity.class);
+                detailActivity.putExtra(ScriptContract.ScriptEntry.COLUMN_TITLE,mCursor.getString(COLUMN_TITLE));
+                detailActivity.putExtra(ScriptContract.ScriptEntry.COLUMN_CONTENT,mCursor.getString(COLUMN_CONTENT));
+                mContext.startActivity(detailActivity);
+                Log.d(LOG_TAG,"pos cicked: "+pos);
+//                Toast.makeText(mContext,"pos",Toast.LENGTH_SHORT).show();
             }
         },mEmptyView);
         mRecyclerView.setAdapter(mScriptListAdapter);
@@ -78,7 +94,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
             Log.d(LOG_TAG,"data count: "+data.getCount());
 //            +", title=  "+data.getString(COLUMN_TITLE));
         }
-
+        mCursor=data;
         mScriptListAdapter.swapCursor(data);
     }
 
