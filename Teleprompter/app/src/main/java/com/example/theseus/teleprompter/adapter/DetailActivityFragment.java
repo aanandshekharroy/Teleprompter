@@ -1,6 +1,8 @@
 package com.example.theseus.teleprompter.adapter;
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -8,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -27,7 +30,11 @@ public class DetailActivityFragment extends Fragment {
     @BindView(R.id.button_play)
     Button button_play;
     @BindView(R.id.scrollView)
-    ScrollView scrollView;
+    ScrollView mScrollView;
+
+    long time=1000000000;
+    int mPlayMode=0;
+    int mScrollBy=1;
     public DetailActivityFragment() {
     }
 
@@ -360,9 +367,40 @@ public class DetailActivityFragment extends Fragment {
         }
         return view;
     }
+    ScrollTimer timer=new ScrollTimer(time,20);
     @OnClick(R.id.button_play)
     public void auto_scroll(){
-        content.setMovementMethod(new ScrollingMovementMethod());
-        scrollView.fullScroll(View.FOCUS_DOWN);
+        if(mPlayMode==0){
+            mPlayMode=1;
+        }else{
+            mPlayMode=0;
+            timer.cancel();
+        }
+    }
+    public class ScrollTimer extends CountDownTimer {
+
+        /**
+         * @param millisInFuture    The number of millis in the future from the call
+         *                          to {@link #start()} until the countdown is done and {@link #onFinish()}
+         *                          is called.
+         * @param countDownInterval The interval along the way to receive
+         *                          {@link #onTick(long)} callbacks.
+         */
+        public ScrollTimer(long millisInFuture, long countDownInterval) {
+            super(millisInFuture, countDownInterval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            // TODO Auto-generated method stub
+//            tv.setText("time: " + millisUntilFinished);
+        mScrollView.scrollBy(0, mScrollBy);
+        }
+
+        @Override
+        public void onFinish() {
+
+        }
+
     }
 }
