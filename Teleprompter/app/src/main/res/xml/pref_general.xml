@@ -5,9 +5,10 @@
          dismiss it. -->
     <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
     <ListPreference
-        android:defaultValue="-1"
+        android:defaultValue="24"
         android:entries="@array/pref_text_size_list_titles"
         android:entryValues="@array/pref_text_size_list_values"
+        android:summary="@string/text_size_summary"
         android:key="@string/pref_text_size"
         android:negativeButtonText="@null"
         android:positiveButtonText="@null"

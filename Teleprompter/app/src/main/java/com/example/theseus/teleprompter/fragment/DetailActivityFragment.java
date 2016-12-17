@@ -2,7 +2,9 @@ package com.example.theseus.teleprompter.fragment;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.CountDownTimer;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
@@ -37,6 +39,14 @@ public class DetailActivityFragment extends Fragment {
     int mPlayMode=0;
     int mScrollBy=10;
     public DetailActivityFragment() {
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(getContext());
+        int textSize=Integer.parseInt(prefs.getString(getString(R.string.pref_text_size),getString(R.string.text_size_default)));
+        content.setTextSize(textSize);
     }
 
     @Override

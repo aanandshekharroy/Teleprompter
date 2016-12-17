@@ -26,11 +26,12 @@
         <item>Extra Large</item>
     </string-array>
     <string-array name="pref_text_size_list_values">
-        <item>@dimen/small_text</item>
-        <item>@dimen/medium_text</item>
-        <item>@dimen/large_text</item>
-        <item>@dimen/extra_large_text</item>
+        <item>20</item>
+        <item>24</item>
+        <item>28</item>
+        <item>32</item>
     </string-array>
+    <string name="text_size_default">22</string>
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
 
@@ -54,6 +55,7 @@
     <string name="pref_header_data_sync">Data &amp; sync</string>
 
     <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string name="text_size_summary">Change the text size of script in teleprompter</string>
     <string-array name="pref_sync_frequency_titles">
         <item>15 minutes</item>
         <item>30 minutes</item>
