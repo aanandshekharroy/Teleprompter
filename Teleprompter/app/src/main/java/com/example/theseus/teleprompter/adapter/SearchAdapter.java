@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.theseus.teleprompter.MainActivityFragment;
+import com.example.theseus.teleprompter.fragment.MainActivityFragment;
 import com.example.theseus.teleprompter.R;
 
 /**

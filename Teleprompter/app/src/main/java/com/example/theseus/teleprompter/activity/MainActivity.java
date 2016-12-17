@@ -1,23 +1,19 @@
-package com.example.theseus.teleprompter;
+package com.example.theseus.teleprompter.activity;
 
-import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.theseus.teleprompter.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-
-import static com.example.theseus.teleprompter.R.id.fab;
 
 public class MainActivity extends AppCompatActivity {
     private Context mContext;
@@ -61,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch (id){
             case R.id.action_settings:
+                startActivity(new Intent(this,SettingsActivity.class));
                 return true;
             case R.id.search_menu:
                 Intent searchIntent=new Intent(mContext, SearchActivity.class);

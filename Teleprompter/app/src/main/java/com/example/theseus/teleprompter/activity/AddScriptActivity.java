@@ -1,4 +1,4 @@
-package com.example.theseus.teleprompter;
+package com.example.theseus.teleprompter.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.example.theseus.teleprompter.R;
+import com.example.theseus.teleprompter.ToastListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 

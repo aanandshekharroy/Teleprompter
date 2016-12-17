@@ -1,4 +1,4 @@
-package com.example.theseus.teleprompter;
+package com.example.theseus.teleprompter.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,13 +16,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.theseus.teleprompter.adapter.DetailActivity;
+import com.example.theseus.teleprompter.R;
+import com.example.theseus.teleprompter.activity.DetailActivity;
 import com.example.theseus.teleprompter.adapter.ScriptListAdapter;
 import com.example.theseus.teleprompter.data.ScriptContract;
-
-import static android.os.Build.VERSION_CODES.M;
 
 /**
  * A placeholder fragment containing a simple view.

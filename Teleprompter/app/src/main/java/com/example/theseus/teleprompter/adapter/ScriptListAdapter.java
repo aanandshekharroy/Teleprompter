@@ -9,15 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.theseus.teleprompter.AddScriptActivity;
-import com.example.theseus.teleprompter.MainActivityFragment;
+import com.example.theseus.teleprompter.activity.AddScriptActivity;
+import com.example.theseus.teleprompter.fragment.MainActivityFragment;
 import com.example.theseus.teleprompter.R;
 import com.example.theseus.teleprompter.data.ScriptContract;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by theseus on 10/12/16.

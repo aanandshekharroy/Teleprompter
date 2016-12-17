@@ -1,4 +1,4 @@
-package com.example.theseus.teleprompter.adapter;
+package com.example.theseus.teleprompter.fragment;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -11,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.theseus.teleprompter.R;
 import com.example.theseus.teleprompter.data.ScriptContract;
@@ -31,10 +33,9 @@ public class DetailActivityFragment extends Fragment {
     Button button_play;
     @BindView(R.id.scrollView)
     ScrollView mScrollView;
-
     long time=1000000000;
     int mPlayMode=0;
-    int mScrollBy=1;
+    int mScrollBy=10;
     public DetailActivityFragment() {
     }
 
@@ -365,13 +366,15 @@ public class DetailActivityFragment extends Fragment {
                     "中文\n" +
                     "Edit links\n");
         }
+
         return view;
     }
-    ScrollTimer timer=new ScrollTimer(time,20);
+    ScrollTimer timer=new ScrollTimer(time,50);
     @OnClick(R.id.button_play)
     public void auto_scroll(){
         if(mPlayMode==0){
             mPlayMode=1;
+            timer.start();
         }else{
             mPlayMode=0;
             timer.cancel();
@@ -393,7 +396,6 @@ public class DetailActivityFragment extends Fragment {
         @Override
         public void onTick(long millisUntilFinished) {
             // TODO Auto-generated method stub
-//            tv.setText("time: " + millisUntilFinished);
         mScrollView.scrollBy(0, mScrollBy);
         }
 

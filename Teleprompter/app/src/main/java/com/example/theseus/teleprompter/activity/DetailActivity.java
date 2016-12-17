@@ -1,4 +1,4 @@
-package com.example.theseus.teleprompter.adapter;
+package com.example.theseus.teleprompter.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

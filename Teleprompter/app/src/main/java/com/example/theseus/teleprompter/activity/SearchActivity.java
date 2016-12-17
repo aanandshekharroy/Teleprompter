@@ -1,8 +1,7 @@
-package com.example.theseus.teleprompter;
+package com.example.theseus.teleprompter.activity;
 
 import android.app.SearchManager;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.app.LoaderManager;
 import android.content.Loader;
@@ -13,19 +12,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
+import com.example.theseus.teleprompter.R;
 import com.example.theseus.teleprompter.adapter.SearchAdapter;
 import com.example.theseus.teleprompter.data.ScriptContract;
-
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,LoaderManager.LoaderCallbacks<Cursor> {
     int LOADER_ID=1;
