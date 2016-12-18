@@ -3,6 +3,7 @@
     <resources>
         <string name="ga_trackingId">UA-89129989-1</string>
         <bool name="ga_autoActivityTracking">true</bool>
+        <bool name="ga_reportUncaughtExceptions">true</bool>
         <screenName name="com.example.theseus.teleprompter.activity.MainActivity">Main Activity</screenName>
         <screenName name="com.example.theseus.teleprompter.activity.DetailActivity">Detail Activity</screenName>
         <screenName name="com.example.theseus.teleprompter.activity.AddScriptActivity">Add Script Activity</screenName>
