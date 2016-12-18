@@ -423,7 +423,7 @@ public class DetailActivityFragment extends Fragment {
 
         int seek_bar_speed_progress=prefs.getInt(getString(R.string.pref_seekbar_speed_progress),0);
         int base_speed=Integer.parseInt(getString(R.string.speed_default));
-        mScrollBy=base_speed+(seek_bar_speed_progress*seek_bar_speed_progress);
+        mScrollBy=base_speed+(2*seek_bar_speed_progress);
         seekbar_speed.setProgress(seek_bar_speed_progress);
         seekbar_speed.setMax(10);
         seekbar_speed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -431,7 +431,7 @@ public class DetailActivityFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 //                if(mPlayMode==0){
                     int base_speed=Integer.parseInt(getString(R.string.speed_default));
-                    mScrollBy=base_speed+progress*progress;
+                    mScrollBy=base_speed+2*progress;
 //                }
             }
 

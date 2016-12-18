@@ -13,8 +13,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.theseus.teleprompter.MyApplication;
 import com.example.theseus.teleprompter.R;
 import com.example.theseus.teleprompter.data.ScriptContract;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -77,6 +80,12 @@ public class AddScriptActivityFragment extends Fragment {
             Log.d(LOG_TAG,"updated:"+update);
         }else{
             Uri insertUri=getContext().getContentResolver().insert(ScriptContract.ScriptEntry.CONTENT_URI,values);
+            Tracker tracker=((MyApplication)getActivity().getApplication()).getTracker();
+            tracker.send(new HitBuilders.EventBuilder()
+            .setCategory("Add script")
+            .setAction("Script added")
+            .setLabel("Added script")
+            .build());
         }
 
 

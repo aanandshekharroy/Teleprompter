@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.theseus.teleprompter.MyApplication;
 import com.example.theseus.teleprompter.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ((MyApplication)getApplication()).startTracking();
         mAdView=(AdView)findViewById(R.id.adView);
         AdRequest adRequest=new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
