@@ -36,8 +36,10 @@
 
 
     <string name="speed_default">1</string>
-    <string name="pref_seekbar_speed_progress">Seekbar spped progress</string>
+    <string name="pref_seekbar_speed_progress">Seekbar speed progress</string>
 
+    <string name="line_height_default">1</string>
+    <string name="pref_seekbar_lineheight_progress">Seekbar line height progress</string>
 
     <string name="pref_header_general">General</string>
 

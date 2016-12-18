@@ -449,6 +449,31 @@ public class DetailActivityFragment extends Fragment {
             }
         });
 
+        int seek_bar_lineheight_progress=prefs.getInt(getString(R.string.pref_seekbar_lineheight_progress),0);
+        int base_lineheight=Integer.parseInt(getString(R.string.line_height_default));
+        content.setLineSpacing((float) (seek_bar_lineheight_progress*seek_bar_lineheight_progress),base_lineheight);
+        float line_height= (float) (base_lineheight+(float)(0.5*seek_bar_lineheight_progress));
+        seekbar_line_height.setProgress(seek_bar_lineheight_progress);
+        seekbar_line_height.setMax(10);
+        seekbar_line_height.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                content.setLineSpacing((float) (progress*progress),1);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                SharedPreferences pref=PreferenceManager.getDefaultSharedPreferences(getContext());
+                SharedPreferences.Editor editValue=pref.edit();
+                editValue.putInt(getString(R.string.pref_seekbar_lineheight_progress),seekBar.getProgress());
+                editValue.apply();
+            }
+        });
 
 
 
