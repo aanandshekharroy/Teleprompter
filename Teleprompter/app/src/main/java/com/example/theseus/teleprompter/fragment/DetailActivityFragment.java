@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.HorizontalScrollView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,28 +27,35 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static android.R.attr.textSize;
+
 /**
  * A placeholder fragment containing a simple view.
  */
 public class DetailActivityFragment extends Fragment {
+    private String LOG_TAG=DetailActivityFragment.class.getSimpleName();
     @BindView(R.id.content)
     TextView content;
     @BindView(R.id.button_play)
     Button button_play;
     @BindView(R.id.scrollView)
     ScrollView mScrollView;
+    @BindView(R.id.seekbar_speed)
+    SeekBar seekbar_speed;
+    @BindView(R.id.seekbar_text_size)
+    SeekBar seekbar_text_size;
+    @BindView(R.id.seekbar_line_height)
+    SeekBar seekbar_line_height;
     long time=1000000000;
     int mPlayMode=0;
-    int mScrollBy=10;
+    int mScrollBy=1;
     public DetailActivityFragment() {
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(getContext());
-        int textSize=Integer.parseInt(prefs.getString(getString(R.string.pref_text_size),getString(R.string.text_size_default)));
-        content.setTextSize(textSize);
+
     }
 
     @Override
@@ -55,6 +64,7 @@ public class DetailActivityFragment extends Fragment {
         View view= inflater.inflate(R.layout.fragment_detail, container, false);
         Intent detailIntent=getActivity().getIntent();
         ButterKnife.bind(this,view);
+        initializeSeekBars(view);
         if(detailIntent!=null){
 //            content.setText(detailIntent.getStringExtra(ScriptContract.ScriptEntry.COLUMN_CONTENT));
             content.setText("A Nine-patch drawable is a stretchable bitmap image, which Android will automatically resize to accommodate the contents of the view in which you have placed it as the background, e.g. nine-patch background for button, which must stretch to accommodate strings of various lengths. The rules for nine-patch image are following:\n" +
@@ -379,6 +389,71 @@ public class DetailActivityFragment extends Fragment {
 
         return view;
     }
+
+    private void initializeSeekBars(View view) {
+
+        SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(getContext());
+        int seek_bar_text_size_progress=prefs.getInt(getString(R.string.pref_seekbar_text_size_progress),0);
+        int base_textSize=Integer.parseInt(getString(R.string.text_size_default));
+        content.setTextSize(base_textSize+(seek_bar_text_size_progress*seek_bar_text_size_progress));
+        seekbar_text_size.setProgress(seek_bar_text_size_progress);
+        seekbar_text_size.setMax(10);
+        seekbar_text_size.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                int base_text_size=Integer.parseInt(getString(R.string.text_size_default));
+                content.setTextSize(base_text_size+progress*progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                SharedPreferences pref=PreferenceManager.getDefaultSharedPreferences(getContext());
+                SharedPreferences.Editor editValue=pref.edit();
+                editValue.putInt(getString(R.string.pref_seekbar_text_size_progress),seekBar.getProgress());
+                editValue.apply();
+            }
+        });
+
+
+
+        int seek_bar_speed_progress=prefs.getInt(getString(R.string.pref_seekbar_speed_progress),0);
+        int base_speed=Integer.parseInt(getString(R.string.speed_default));
+        mScrollBy=base_speed+(seek_bar_speed_progress*seek_bar_speed_progress);
+        seekbar_speed.setProgress(seek_bar_speed_progress);
+        seekbar_speed.setMax(10);
+        seekbar_speed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+//                if(mPlayMode==0){
+                    int base_speed=Integer.parseInt(getString(R.string.speed_default));
+                    mScrollBy=base_speed+progress*progress;
+//                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                SharedPreferences pref=PreferenceManager.getDefaultSharedPreferences(getContext());
+                SharedPreferences.Editor editValue=pref.edit();
+                editValue.putInt(getString(R.string.pref_seekbar_speed_progress),seekBar.getProgress());
+                editValue.apply();
+            }
+        });
+
+
+
+
+    }
+
     ScrollTimer timer=new ScrollTimer(time,50);
     @OnClick(R.id.button_play)
     public void auto_scroll(){
@@ -415,4 +490,5 @@ public class DetailActivityFragment extends Fragment {
         }
 
     }
+
 }

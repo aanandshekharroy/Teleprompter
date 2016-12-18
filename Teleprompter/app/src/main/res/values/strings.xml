@@ -32,7 +32,13 @@
         <item>32</item>
     </string-array>
     <string name="text_size_default">22</string>
-    <!-- Example General settings -->
+    <string name="pref_seekbar_text_size_progress">Seekbar text size progress</string>
+
+
+    <string name="speed_default">1</string>
+    <string name="pref_seekbar_speed_progress">Seekbar spped progress</string>
+
+
     <string name="pref_header_general">General</string>
 
     <string name="pref_title_social_recommendations">Enable social recommendations</string>

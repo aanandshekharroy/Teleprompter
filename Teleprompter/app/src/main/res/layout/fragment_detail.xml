@@ -7,47 +7,72 @@
     android:layout_height="match_parent">
 
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scrollView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.theseus.teleprompter.fragment.DetailActivityFragment"
-    tools:showIn="@layout/activity_detail">
-        <TextView
-            android:id="@+id/content"
-            android:textColor="@color/white"
-            android:scrollbars = "vertical"
-            android:gravity="bottom"
-            android:textSize="@dimen/large_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-</ScrollView>
-    <LinearLayout
-        android:id="@+id/liner_layouts_tools"
-        android:orientation="vertical"
-        android:gravity="bottom"
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.example.theseus.teleprompter.fragment.DetailActivityFragment"
+        tools:showIn="@layout/activity_detail">
+            <TextView
+                android:id="@+id/content"
+                android:textColor="@color/white"
+                android:scrollbars = "vertical"
+                android:gravity="bottom"
+                android:textSize="@dimen/large_text"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
-        <!--<ProgressBar-->
-            <!--style="?android:attr/progressBarStyleHorizontal"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:id="@+id/progressBar_left_right"-->
-            <!--android:progressTint="#4d34ff"-->
-            <!--android:progressBackgroundTint="#4d34ff"/>-->
-
-        <Button
-            android:id="@+id/button_play"
-            android:text="Play"
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/linear_layouts_tools"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Speed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <SeekBar
+            android:id="@+id/seekbar_speed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Text Size"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <SeekBar
+            android:id="@+id/seekbar_text_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:text="Line Height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <SeekBar
+            android:id="@+id/seekbar_line_height"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/button_play"
+                android:text="Play"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+
     </LinearLayout>
 </RelativeLayout>
