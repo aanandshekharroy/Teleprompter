@@ -24,7 +24,11 @@
     android:hint="@string/title"
     />
     <EditText
+        android:layout_marginTop="16dp"
         android:id="@+id/add_content"
+
+        android:lines="10"
+        android:gravity="top"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:inputType="textMultiLine"
@@ -34,6 +38,7 @@
     <Button
         android:id="@+id/save_button"
         android:text="@string/add_script"
+        android:background="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

@@ -3,12 +3,16 @@ package com.example.theseus.teleprompter.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.theseus.teleprompter.activity.AddScriptActivity;
 import com.example.theseus.teleprompter.fragment.MainActivityFragment;
@@ -20,7 +24,7 @@ import com.example.theseus.teleprompter.data.ScriptContract;
  */
 
 public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.ScriptListAdapterViewHolder> {
-
+    private static final String LOG_TAG=ScriptListAdapter.class.getSimpleName();
     private Cursor mCursor;
     private Context mContext;
     final private ScriptListAdapterOnClickHandler mScriptListAdapterOnClickHandler ;
@@ -57,22 +61,42 @@ public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.Sc
             mEmptyView.setVisibility(View.VISIBLE);
         }
     }
-    public class ScriptListAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ScriptListAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
 //        @BindView(R.id.title)
         TextView title;
-        ImageButton imageButton;
+        ImageButton editButton;
+        ImageButton deleteButton;
+        LinearLayout listItemOptions;
         public ScriptListAdapterViewHolder(View itemView) {
             super(itemView);
+            listItemOptions=(LinearLayout)itemView.findViewById(R.id.list_item_options);
+            listItemOptions.setVisibility(View.GONE);
             title=(TextView)itemView.findViewById(R.id.title);
-            imageButton=(ImageButton)itemView.findViewById(R.id.edit);
-            imageButton.setOnClickListener(this);
+            editButton=(ImageButton)itemView.findViewById(R.id.image_button_edit);
+            editButton.setOnClickListener(this);
+            deleteButton=(ImageButton)itemView.findViewById(R.id.image_button_delete);
+            deleteButton.setOnClickListener(this);
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
-
+        public void removeAt(int position) {
+//            mCursor.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, mCursor.getCount());
+        }
         @Override
         public void onClick(View v) {
-            if(v.getId()==imageButton.getId()){
+            LinearLayout linearLayoutTextContainer=(LinearLayout)v.findViewById(R.id.list_item_text_container);
+            LinearLayout listItemOptions=(LinearLayout)v.findViewById(R.id.list_item_options);
+            if(listItemOptions!=null&&listItemOptions.getVisibility()==View.VISIBLE){
+              listItemOptions.setVisibility(View.INVISIBLE);
+                linearLayoutTextContainer.setVisibility(View.VISIBLE);
+                return;
+            }
+//            listItemOptions.setVisibility(View.VISIBLE);
+            Log.d(LOG_TAG,"onClick");
+            if(v.getId()==editButton.getId()){
                 int pos=getAdapterPosition();
                 mCursor.moveToPosition(pos);
                 Intent addScriptintent=new Intent(mContext,AddScriptActivity.class);
@@ -80,11 +104,30 @@ public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.Sc
                 addScriptintent.putExtra(ScriptContract.ScriptEntry.COLUMN_TITLE,mCursor.getString(MainActivityFragment.COLUMN_TITLE));
                 addScriptintent.putExtra(ScriptContract.ScriptEntry.COLUMN_CONTENT,mCursor.getString(MainActivityFragment.COLUMN_CONTENT));
                 mContext.startActivity(addScriptintent);
-            }else {
+            }else if(v.getId()==deleteButton.getId()){
+//                Log.d(LOG_TAG)
+                int pos=getAdapterPosition();
+                mCursor.moveToPosition(pos);
+                Uri deleteUri= ScriptContract.ScriptEntry.buildUriFromId(mCursor.getInt(MainActivityFragment.COLUMN_ID));
+                long id=mContext.getContentResolver().delete(deleteUri,null,null);
+                Log.d(LOG_TAG,"deleted: id: "+id);
+                removeAt(pos);
+//                notifyDataSetChanged();
+            }else{
                 mScriptListAdapterOnClickHandler.onClick(this);
             }
         }
 
+        @Override
+        public boolean onLongClick(View v) {
+//            Toast.makeText()
+            Log.d(LOG_TAG,"onLongClick");
+            LinearLayout linearLayoutTextContainer=(LinearLayout)v.findViewById(R.id.list_item_text_container);
+            linearLayoutTextContainer.setVisibility(View.INVISIBLE);
+            LinearLayout listItemOptions=(LinearLayout)v.findViewById(R.id.list_item_options);
+            listItemOptions.setVisibility(View.VISIBLE);
+            return true;
+        }
     }
     public static interface ScriptListAdapterOnClickHandler{
         void onClick(ScriptListAdapterViewHolder vh);

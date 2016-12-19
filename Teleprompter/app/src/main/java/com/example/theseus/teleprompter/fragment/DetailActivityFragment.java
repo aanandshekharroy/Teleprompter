@@ -66,6 +66,7 @@ public class DetailActivityFragment extends Fragment {
         ButterKnife.bind(this,view);
         initializeSeekBars(view);
         if(detailIntent!=null){
+//            getActivity().getSupportActionBar().setTitle("Hello world App");
 //            content.setText(detailIntent.getStringExtra(ScriptContract.ScriptEntry.COLUMN_CONTENT));
             content.setText("A Nine-patch drawable is a stretchable bitmap image, which Android will automatically resize to accommodate the contents of the view in which you have placed it as the background, e.g. nine-patch background for button, which must stretch to accommodate strings of various lengths. The rules for nine-patch image are following:\n" +
                     "\n" +
@@ -390,6 +391,12 @@ public class DetailActivityFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        timer.cancel();
+    }
+
     private void initializeSeekBars(View view) {
 
         SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -423,7 +430,7 @@ public class DetailActivityFragment extends Fragment {
 
         int seek_bar_speed_progress=prefs.getInt(getString(R.string.pref_seekbar_speed_progress),0);
         int base_speed=Integer.parseInt(getString(R.string.speed_default));
-        mScrollBy=base_speed+(2*seek_bar_speed_progress);
+        mScrollBy=base_speed+(seek_bar_speed_progress);
         seekbar_speed.setProgress(seek_bar_speed_progress);
         seekbar_speed.setMax(10);
         seekbar_speed.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -431,7 +438,7 @@ public class DetailActivityFragment extends Fragment {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 //                if(mPlayMode==0){
                     int base_speed=Integer.parseInt(getString(R.string.speed_default));
-                    mScrollBy=base_speed+2*progress;
+                    mScrollBy=base_speed+progress;
 //                }
             }
 
@@ -479,7 +486,7 @@ public class DetailActivityFragment extends Fragment {
 
     }
 
-    ScrollTimer timer=new ScrollTimer(time,50);
+    ScrollTimer timer=new ScrollTimer(time,5);
     @OnClick(R.id.button_play)
     public void auto_scroll(){
         if(mPlayMode==0){
@@ -506,7 +513,7 @@ public class DetailActivityFragment extends Fragment {
         @Override
         public void onTick(long millisUntilFinished) {
             // TODO Auto-generated method stub
-        mScrollView.scrollBy(0, mScrollBy);
+        mScrollView.smoothScrollBy(0, mScrollBy);
         }
 
         @Override

@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.theseus.teleprompter.R;
+import com.example.theseus.teleprompter.SimpleDividerItemDecoration;
 import com.example.theseus.teleprompter.activity.DetailActivity;
 import com.example.theseus.teleprompter.adapter.ScriptListAdapter;
 import com.example.theseus.teleprompter.data.ScriptContract;
@@ -54,6 +55,8 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         mEmptyView=(TextView)rootView.findViewById(R.id.empty_view);
         mRecyclerView=(RecyclerView)rootView.findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(getContext()));
+
         mRecyclerView.setAdapter(mScriptListAdapter);
         mScriptListAdapter=new ScriptListAdapter(getActivity(), new ScriptListAdapter.ScriptListAdapterOnClickHandler() {
             @Override

@@ -37,7 +37,7 @@
         </activity>
         <activity
             android:name=".activity.AddScriptActivity"
-            android:label="@string/title_activity_add_script"
+            android:label="@string/add_script"
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

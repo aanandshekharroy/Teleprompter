@@ -53,6 +53,8 @@ public class AddScriptActivityFragment extends Fragment {
         ButterKnife.bind(this,view);
         Intent editScript=getActivity().getIntent();
         if(editScript!=null){
+//            getActivity().
+
             editMode=1;
             if(editScript.hasExtra(ScriptContract.ScriptEntry._ID)){
                 _id=editScript.getLongExtra(ScriptContract.ScriptEntry._ID,-1);
