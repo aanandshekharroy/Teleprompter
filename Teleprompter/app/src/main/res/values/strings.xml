@@ -65,6 +65,9 @@
 
     <string name="pref_title_sync_frequency">Sync frequency</string>
     <string name="text_size_summary">Change the text size of script in teleprompter</string>
+    <string name="line_spacing">Line Spacing</string>
+    <string name="text_size">Text Size</string>
+    <string name="speed">Speed</string>
     <string-array name="pref_sync_frequency_titles">
         <item>15 minutes</item>
         <item>30 minutes</item>

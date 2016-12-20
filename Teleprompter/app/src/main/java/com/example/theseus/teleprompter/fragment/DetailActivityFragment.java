@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
@@ -37,7 +39,7 @@ public class DetailActivityFragment extends Fragment {
     @BindView(R.id.content)
     TextView content;
     @BindView(R.id.button_play)
-    Button button_play;
+    ImageButton button_play;
     @BindView(R.id.scrollView)
     ScrollView mScrollView;
     @BindView(R.id.seekbar_speed)
@@ -46,6 +48,12 @@ public class DetailActivityFragment extends Fragment {
     SeekBar seekbar_text_size;
     @BindView(R.id.seekbar_line_height)
     SeekBar seekbar_line_height;
+    @BindView(R.id.linear_layouts_tool_bar)
+    LinearLayout linearLayoutToolBar;
+    @BindView(R.id.image_button_setting)
+    ImageButton imageButtonSetting;
+    @BindView(R.id.linear_layout_seekbar_container)
+    LinearLayout linearLayoutSeekbarContainer;
     long time=1000000000;
     int mPlayMode=0;
     int mScrollBy=1;
@@ -486,16 +494,31 @@ public class DetailActivityFragment extends Fragment {
 
     }
 
-    ScrollTimer timer=new ScrollTimer(time,5);
+    ScrollTimer timer=new ScrollTimer(time,15);
     @OnClick(R.id.button_play)
     public void auto_scroll(){
         if(mPlayMode==0){
             mPlayMode=1;
             timer.start();
+            button_play.setImageResource(R.drawable.pause24);
+//            button_play.setBackgroundColor(R.color.colorPrimaryDark);
         }else{
             mPlayMode=0;
+            button_play.setImageResource(R.drawable.play24);
             timer.cancel();
         }
+    }
+
+    @OnClick(R.id.image_button_setting)
+    public void onClick(){
+        if(linearLayoutSeekbarContainer.getVisibility()==View.GONE){
+            linearLayoutSeekbarContainer.setVisibility(View.VISIBLE);
+//            imageButtonSetting.setBackgroundColor(R.color.colorPrimaryDark);
+        }else if(linearLayoutSeekbarContainer.getVisibility()==View.VISIBLE){
+            linearLayoutSeekbarContainer.setVisibility(View.GONE);
+//            imageButtonSetting.setBackgroundColor(R.color.colorPrimary);
+        }
+//        linearLayoutToolBar.setVisibility(View.GONE);
     }
     public class ScrollTimer extends CountDownTimer {
 

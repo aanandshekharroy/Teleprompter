@@ -44,6 +44,7 @@ public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.Sc
     public void onBindViewHolder(ScriptListAdapterViewHolder holder, int position) {
         mCursor.moveToPosition(position);
         holder.title.setText(mCursor.getString(MainActivityFragment.COLUMN_TITLE));
+        holder.content.setText(mCursor.getString(MainActivityFragment.COLUMN_CONTENT));
     }
 
     @Override
@@ -59,12 +60,15 @@ public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.Sc
         notifyDataSetChanged();
         if(mCursor!=null&&mCursor.getCount()==0){
             mEmptyView.setVisibility(View.VISIBLE);
+        }else if(mEmptyView.getVisibility()==View.VISIBLE){
+            mEmptyView.setVisibility(View.GONE);
         }
     }
     public class ScriptListAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
 //        @BindView(R.id.title)
         TextView title;
+        TextView content;
         ImageButton editButton;
         ImageButton deleteButton;
         LinearLayout listItemOptions;
@@ -73,6 +77,7 @@ public class ScriptListAdapter extends RecyclerView.Adapter<ScriptListAdapter.Sc
             listItemOptions=(LinearLayout)itemView.findViewById(R.id.list_item_options);
             listItemOptions.setVisibility(View.GONE);
             title=(TextView)itemView.findViewById(R.id.title);
+            content=(TextView)itemView.findViewById(R.id.content);
             editButton=(ImageButton)itemView.findViewById(R.id.image_button_edit);
             editButton.setOnClickListener(this);
             deleteButton=(ImageButton)itemView.findViewById(R.id.image_button_delete);

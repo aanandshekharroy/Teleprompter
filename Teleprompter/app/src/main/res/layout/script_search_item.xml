@@ -5,11 +5,23 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content">
     <TextView
-    android:id="@+id/title"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"/>
+        android:id="@+id/title"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:maxLines="1"
+        android:lines="1"
+        android:textStyle="bold"
+        android:ellipsize="marquee"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/medium_text"/>
     <TextView
         android:id="@+id/content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:textStyle="italic"
+        android:maxLines="2"
+        android:lines="2"
+        android:ellipsize="marquee"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/small_text"/>
 </LinearLayout>

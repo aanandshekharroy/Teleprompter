@@ -6,9 +6,4 @@
           android:title="@string/search_view"
           android:icon="@android:drawable/ic_menu_search"
           app:showAsAction="ifRoom"/>
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never"/>
 </menu>
