@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import com.example.theseus.teleprompter.R;
 import com.example.theseus.teleprompter.adapter.SearchAdapter;
 import com.example.theseus.teleprompter.data.ScriptContract;
+import com.example.theseus.teleprompter.fragment.MainActivityFragment;
 
 public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,LoaderManager.LoaderCallbacks<Cursor> {
     int LOADER_ID=1;
@@ -98,7 +99,10 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         Log.d(LOG_TAG,"data count: "+data);
         if(data!=null){
-            Log.d(LOG_TAG,"data count: "+data.getCount());
+            Log.d(LOG_TAG,"data count--: "+data.getCount());
+
+//            data.moveToPosition(0);
+//            Log.d(LOG_TAG,"search title: "+data.getString(MainActivityFragment.COLUMN_TITLE));
             mSearchAdapter.swapCursor(data);
         }
 

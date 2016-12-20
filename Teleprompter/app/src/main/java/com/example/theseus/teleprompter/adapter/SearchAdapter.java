@@ -24,7 +24,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchAdap
 
     public void swapCursor(Cursor data) {
         mCursor=data;
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 
     @Override
