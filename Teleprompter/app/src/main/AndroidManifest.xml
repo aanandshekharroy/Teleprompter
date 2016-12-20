@@ -56,7 +56,7 @@
             android:name=".activity.DetailActivity"
             android:label="@string/title_activity_detail"
             android:parentActivityName=".activity.MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar.detailActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.theseus.teleprompter.activity.MainActivity"/>
