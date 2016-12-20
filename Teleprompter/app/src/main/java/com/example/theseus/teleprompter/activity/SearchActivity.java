@@ -18,9 +18,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.theseus.teleprompter.R;
+import com.example.theseus.teleprompter.SimpleDividerItemDecoration;
 import com.example.theseus.teleprompter.adapter.SearchAdapter;
 import com.example.theseus.teleprompter.data.ScriptContract;
 import com.example.theseus.teleprompter.fragment.MainActivityFragment;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,LoaderManager.LoaderCallbacks<Cursor> {
     int LOADER_ID=1;
@@ -29,6 +32,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     private String mQuery="";
     private SearchAdapter mSearchAdapter;
     private RecyclerView mRecyclerView;
+    private AdView mAdView;
     public static String[] SCRIPT_POJECTION=new String[]{
             ScriptContract.ScriptEntry._ID,
             ScriptContract.ScriptEntry.COLUMN_TITLE,
@@ -38,6 +42,9 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        mAdView=(AdView)findViewById(R.id.adView);
+        AdRequest adRequest=new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,6 +53,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         mRecyclerView=(RecyclerView)findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mSearchAdapter);
+        mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(this));
+
         getLoaderManager().initLoader(LOADER_ID,null, this);
     }
 
@@ -68,14 +77,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id){
-            case R.id.search_menu:
-//                Toast.makeText(mContext,"clicked search",Toast.LENGTH_SHORT).show();
-                return true;
-        }
         return super.onOptionsItemSelected(item);
-
     }
     @Override
     public boolean onQueryTextSubmit(String query) {
@@ -100,10 +102,12 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         Log.d(LOG_TAG,"data count: "+data);
         if(data!=null){
             Log.d(LOG_TAG,"data count--: "+data.getCount());
+            if(mQuery.length()>0){
+                mSearchAdapter.swapCursor(data);
+            }else{
+                mSearchAdapter.swapCursor(null);
+            }
 
-//            data.moveToPosition(0);
-//            Log.d(LOG_TAG,"search title: "+data.getString(MainActivityFragment.COLUMN_TITLE));
-            mSearchAdapter.swapCursor(data);
         }
 
     }
