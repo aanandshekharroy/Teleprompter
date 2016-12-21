@@ -51,6 +51,8 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>
 
         <provider
+            android:exported="true"
+            android:grantUriPermissions="true"
             android:name=".data.ScriptProvider"
             android:authorities="com.example.theseus.teleprompter"/>
 

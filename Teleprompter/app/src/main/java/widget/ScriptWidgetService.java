@@ -32,11 +32,7 @@ public class ScriptWidgetService extends RemoteViewsService {
 
             @Override
             public void onDataSetChanged() {
-                if(mcursor!=null){
-                    mcursor.close();
-                }else {
-                    mcursor=getContentResolver().query(ScriptContract.ScriptEntry.CONTENT_URI,null,null,null,null);
-                }
+                mcursor=getContentResolver().query(ScriptContract.ScriptEntry.CONTENT_URI,null,null,null,null);
             }
 
             @Override
