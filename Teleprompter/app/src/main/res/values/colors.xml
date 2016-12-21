@@ -5,6 +5,7 @@
     <color name="colorAccent">#FFC107</color>
     <color name="winBackground">#98cb4a</color>
     <color name="background">#f76d3c</color>
-    <color name="black">#000000</color>
+    <color name="black">#212121</color>
+    <color name="black_800">#424242</color>
     <color name="white">#FFFFFF</color>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.theseus.teleprompter.fragment;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.Nullable;
@@ -23,6 +24,8 @@ import com.google.android.gms.analytics.Tracker;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.example.theseus.teleprompter.fragment.MainActivityFragment.ACTION_DATA_UPDATED;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -69,6 +72,11 @@ public class AddScriptActivityFragment extends Fragment {
         }
         return view;
     }
+    public void updateWidget(){
+        Context context=getContext();
+        Intent dataUpdatedNotify=new Intent(ACTION_DATA_UPDATED).setPackage(context.getPackageName());
+        context.sendBroadcast(dataUpdatedNotify);
+    }
     @OnClick (R.id.save_button)
     public void saveScript(){
         if(editTitle.getText().toString().length()<1||addContent.getText().toString().length()<1){
@@ -98,6 +106,7 @@ public class AddScriptActivityFragment extends Fragment {
 
 //        Log.d(LOG_TAG,"inserted uri: "+insertUri);
 //        Toast.makeText(getContext(),title,Toast.LENGTH_SHORT).show();
+        updateWidget();
         getActivity().finish();
     }
 

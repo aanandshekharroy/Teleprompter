@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:maxLines="1"
             android:lines="1"
+            android:textColor="@color/black"
             android:textStyle="bold"
             android:ellipsize="marquee"
             android:layout_height="wrap_content"
@@ -24,6 +25,7 @@
         <TextView
             android:id="@+id/content"
             android:padding="10dp"
+            android:textColor="@color/black_800"
             android:layout_width="match_parent"
             android:textStyle="italic"
             android:maxLines="2"

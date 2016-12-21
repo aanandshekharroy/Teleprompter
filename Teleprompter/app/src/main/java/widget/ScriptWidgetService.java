@@ -65,6 +65,11 @@ public class ScriptWidgetService extends RemoteViewsService {
                 RemoteViews views=new RemoteViews(getPackageName(), R.layout.script_search_item);
                 views.setTextViewText(R.id.title,mcursor.getString(MainActivityFragment.COLUMN_TITLE));
                 views.setTextViewText(R.id.content,mcursor.getString(MainActivityFragment.COLUMN_CONTENT));
+                final Intent fillIntent=new Intent();
+                fillIntent.setAction(MainActivityFragment.ACTION_DATA_UPDATED);
+                fillIntent.putExtra(ScriptContract.ScriptEntry.COLUMN_TITLE,mcursor.getString(MainActivityFragment.COLUMN_TITLE));
+                fillIntent.putExtra(ScriptContract.ScriptEntry.COLUMN_CONTENT,mcursor.getString(MainActivityFragment.COLUMN_CONTENT));
+                views.setOnClickFillInIntent(R.id.search_item, fillIntent);
                 return views;
             }
 
@@ -80,7 +85,11 @@ public class ScriptWidgetService extends RemoteViewsService {
 
             @Override
             public long getItemId(int position) {
-                return mcursor.getInt(mcursor.getColumnIndex(ScriptContract.ScriptEntry.COLUMN__ID));
+                if(mcursor.isClosed()){
+                    return position;
+                }
+                mcursor.moveToPosition(position);
+                return mcursor.getInt(0);
             }
 
             @Override
