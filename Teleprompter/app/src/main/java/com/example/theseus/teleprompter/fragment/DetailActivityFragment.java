@@ -76,7 +76,6 @@ public class DetailActivityFragment extends Fragment {
         }else{
             linearLayoutTools.setVisibility(View.VISIBLE);
         }
-//        mScrollView.onInterceptTouchEvent(new M)
     }
 
     @Override
@@ -102,21 +101,6 @@ public class DetailActivityFragment extends Fragment {
                     "\n" +
                     "The center of buoyancy of an object is the centroid of the displaced volume of fluid.\n" +
                     "\n" +
-                    "Contents  [hide] \n" +
-                    "1\tArchimedes' principle\n" +
-                    "2\tForces and equilibrium\n" +
-                    "2.1\tSimplified model\n" +
-                    "2.2\tStability\n" +
-                    "3\tCompressible fluids and objects\n" +
-                    "3.1\tCompressible objects\n" +
-                    "3.1.1\tSubmarines\n" +
-                    "3.1.2\tBalloons\n" +
-                    "3.1.3\tDivers\n" +
-                    "4\tDensity\n" +
-                    "5\tSee also\n" +
-                    "6\tReferences\n" +
-                    "7\tExternal links\n" +
-                    "Archimedes' principle[edit]\n" +
                     "\n" +
                     "A metallic coin (one British pound coin) floats in mercury due to the buoyancy force upon it and appears to float higher because of the surface tension of the mercury.\n" +
                     "Main article: Archimedes' principle\n" +
@@ -288,32 +272,6 @@ public class DetailActivityFragment extends Fragment {
                     "Density column of liquids & solids: baby oil, alcohol (with red food coloring), vegetable oil, wax, water (with blue food coloring), & aluminum.\n" +
                     "If the weight of an object is less than the weight of the displaced fluid when fully submerged, then the object has an average density that is less than the fluid and when fully submerged will experience a buoyancy force greater than its own weight. If the fluid has a surface, such as water in a lake or the sea, the object will float and settle at a level where it displaces the same weight of fluid as the weight of the object. If the object is immersed in the fluid, such as a submerged submarine or air in a balloon, it will tend to rise. If the object has exactly the same density as the fluid, then its buoyancy equals its weight. It will remain submerged in the fluid, but it will neither sink nor float, although a disturbance in either direction will cause it to drift away from its position. An object with a higher average density than the fluid will never experience more buoyancy than weight and it will sink. A ship will float even though it may be made of steel (which is much denser than water), because it encloses a volume of air (which is much less dense than water), and the resulting shape has an average density less than that of the water.\n" +
                     "\n" +
-                    "See also[edit]\n" +
-                    "Helmet logo for Underwater Diving portal.png Underwater diving portal\n" +
-                    "Air\n" +
-                    "Archimedes paradox\n" +
-                    "Buoy\n" +
-                    "Brunt–Väisälä frequency\n" +
-                    "Buoyancy compensator (diving)\n" +
-                    "Buoyancy compensator (aviation)\n" +
-                    "Cartesian diver\n" +
-                    "Dasymeter\n" +
-                    "Diving weighting system\n" +
-                    "Fluid\n" +
-                    "Hydrostatics\n" +
-                    "Galileo thermometer\n" +
-                    "Hull (ship)\n" +
-                    "Hydrometer\n" +
-                    "Hydrostatic weighing\n" +
-                    "Lighter than air\n" +
-                    "Naval architecture\n" +
-                    "Plimsoll line\n" +
-                    "Pontoon\n" +
-                    "Quicksand\n" +
-                    "Salt fingering\n" +
-                    "Submarine\n" +
-                    "Swim bladder\n" +
-                    "Thrust\n" +
                     "References[edit]\n" +
                     "^ Jump up to: a b Wells, John C. (2008), Longman Pronunciation Dictionary (3rd ed.), Longman, ISBN 9781405881180\n" +
                     "^ Jump up to: a b Roach, Peter (2011), Cambridge English Pronouncing Dictionary (18th ed.), Cambridge: Cambridge University Press, ISBN 9780521152532\n" +
@@ -332,81 +290,7 @@ public class DetailActivityFragment extends Fragment {
                     "GND: 4137276-1\n" +
                     "Categories: ForceFluid mechanicsBuoyancy\n" +
                     "Navigation menu\n" +
-                    "Not logged inTalkContributionsCreate accountLog inArticleTalkReadEditView historySearch\n" +
-                    "\n" +
-                    "Search Wikipedia\n" +
-                    "Go\n" +
-                    "Main page\n" +
-                    "Contents\n" +
-                    "Featured content\n" +
-                    "Current events\n" +
-                    "Random article\n" +
-                    "Donate to Wikipedia\n" +
-                    "Wikipedia store\n" +
-                    "Interaction\n" +
-                    "Help\n" +
-                    "About Wikipedia\n" +
-                    "Community portal\n" +
-                    "Recent changes\n" +
-                    "Contact page\n" +
-                    "Tools\n" +
-                    "What links here\n" +
-                    "Related changes\n" +
-                    "Upload file\n" +
-                    "Special pages\n" +
-                    "Permanent link\n" +
-                    "Page information\n" +
-                    "Wikidata item\n" +
-                    "Cite this page\n" +
-                    "Print/export\n" +
-                    "Create a book\n" +
-                    "Download as PDF\n" +
-                    "Printable version\n" +
-                    "In other projects\n" +
-                    "Wikimedia Commons\n" +
-                    "Languages\n" +
-                    "Afrikaans\n" +
-                    "العربية\n" +
-                    "Bân-lâm-gú\n" +
-                    "Български\n" +
-                    "Bosanski\n" +
-                    "Čeština\n" +
-                    "ChiShona\n" +
-                    "Dansk\n" +
-                    "Deutsch\n" +
-                    "Eesti\n" +
-                    "Ελληνικά\n" +
-                    "Español\n" +
-                    "فارسی\n" +
-                    "Français\n" +
-                    "Gaeilge\n" +
-                    "Galego\n" +
-                    "한국어\n" +
-                    "हिन्दी\n" +
-                    "Hrvatski\n" +
-                    "Bahasa Indonesia\n" +
-                    "עברית\n" +
-                    "Kreyòl ayisyen\n" +
-                    "Magyar\n" +
-                    "മലയാളം\n" +
-                    "Bahasa Melayu\n" +
-                    "日本語\n" +
-                    "Norsk bokmål\n" +
-                    "Norsk nynorsk\n" +
-                    "Polski\n" +
-                    "Português\n" +
-                    "Русский\n" +
-                    "Simple English\n" +
-                    "Slovenščina\n" +
-                    "Srpskohrvatski / српскохрватски\n" +
-                    "Suomi\n" +
-                    "Svenska\n" +
-                    "தமிழ்\n" +
-                    "ไทย\n" +
-                    "Türkçe\n" +
-                    "Українська\n" +
-                    "中文\n" +
-                    "Edit links\n");
+                    "Not logged inTalkContributionsCreate accountLog inArticleTalkReadEditView historySearch\n" );
         }
 
         return view;
@@ -526,12 +410,9 @@ public class DetailActivityFragment extends Fragment {
     public void onClick(){
         if(linearLayoutSeekbarContainer.getVisibility()==View.GONE){
             linearLayoutSeekbarContainer.setVisibility(View.VISIBLE);
-//            imageButtonSetting.setBackgroundColor(R.color.colorPrimaryDark);
         }else if(linearLayoutSeekbarContainer.getVisibility()==View.VISIBLE){
             linearLayoutSeekbarContainer.setVisibility(View.GONE);
-//            imageButtonSetting.setBackgroundColor(R.color.colorPrimary);
         }
-//        linearLayoutToolBar.setVisibility(View.GONE);
     }
     public class ScrollTimer extends CountDownTimer {
 
