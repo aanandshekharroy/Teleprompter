@@ -17,6 +17,7 @@ public class ScriptContract {
     public static final class ScriptEntry implements BaseColumns{
         public static final String PATH_SCRIPT="scripts";
         public static final String TABLE_NAME="scripts";
+        public static final String COLUMN__ID="_ID";
         public static final String COLUMN_TITLE="title";
         public static final String COLUMN_CONTENT="content";
         public static final Uri CONTENT_URI=BASE_URI.buildUpon().appendPath(PATH_SCRIPT).build();
