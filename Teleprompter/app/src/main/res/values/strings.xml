@@ -68,6 +68,7 @@
     <string name="line_spacing">Line Spacing</string>
     <string name="text_size">Text Size</string>
     <string name="speed">Speed</string>
+    <string name="add_text_warning">Please add text in the title and content box</string>
     <string-array name="pref_sync_frequency_titles">
         <item>15 minutes</item>
         <item>30 minutes</item>

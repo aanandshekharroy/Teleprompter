@@ -30,6 +30,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.R.attr.textSize;
+import static android.os.Build.VERSION_CODES.M;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -54,6 +55,8 @@ public class DetailActivityFragment extends Fragment {
     ImageButton imageButtonSetting;
     @BindView(R.id.linear_layout_seekbar_container)
     LinearLayout linearLayoutSeekbarContainer;
+    @BindView(R.id.linear_layouts_tools)
+    LinearLayout linearLayoutTools;
     long time=1000000000;
     int mPlayMode=0;
     int mScrollBy=1;
@@ -64,6 +67,16 @@ public class DetailActivityFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+    }
+
+    @OnClick(R.id.scrollView)
+    public void onClickScrollView(){
+        if(linearLayoutTools.getVisibility()==View.VISIBLE){
+            linearLayoutTools.setVisibility(View.GONE);
+        }else{
+            linearLayoutTools.setVisibility(View.VISIBLE);
+        }
+//        mScrollView.onInterceptTouchEvent(new M)
     }
 
     @Override

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.theseus.teleprompter.MyApplication;
 import com.example.theseus.teleprompter.R;
@@ -70,7 +71,10 @@ public class AddScriptActivityFragment extends Fragment {
     }
     @OnClick (R.id.save_button)
     public void saveScript(){
-
+        if(editTitle.getText().toString().length()<1||addContent.getText().toString().length()<1){
+            Toast.makeText(getContext(),getString(R.string.add_text_warning),Toast.LENGTH_SHORT).show();
+            return;
+        }
         String title= String.valueOf(editTitle.getText());
         String content= String.valueOf(addContent.getText());
         ContentValues values=new ContentValues();
