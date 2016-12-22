@@ -25,7 +25,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.example.theseus.teleprompter.fragment.MainActivityFragment.ACTION_DATA_UPDATED;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -39,6 +38,8 @@ public class AddScriptActivityFragment extends Fragment {
     EditText addContent;
     @BindView(R.id.save_button)
     Button saveButton;
+    public static final String ACTION_DATA_UPDATED =
+            "com.example.theseus.teleprompter.widget.ACTION_DATA_UPDATED";
     public AddScriptActivityFragment() {
     }
     private int editMode=0;

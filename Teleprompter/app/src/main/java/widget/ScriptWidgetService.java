@@ -19,6 +19,8 @@ import static android.R.attr.data;
  */
 
 public class ScriptWidgetService extends RemoteViewsService {
+    public static final String ACTION_DATA_UPDATED =
+            "com.example.theseus.teleprompter.widget.ACTION_DATA_UPDATED";
     private static final String LOG_TAG=ScriptWidgetService.class.getSimpleName();
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
@@ -27,11 +29,12 @@ public class ScriptWidgetService extends RemoteViewsService {
             @Override
             public void onCreate() {
                 mcursor=getContentResolver().query(ScriptContract.ScriptEntry.CONTENT_URI,MainActivityFragment.SCRIPT_POJECTION,null,null,null);
-                Log.d(LOG_TAG,"service cursor count "+mcursor.getCount());
+                Log.d(LOG_TAG,"intent adapter cursor count "+mcursor.getCount());
             }
 
             @Override
             public void onDataSetChanged() {
+                Log.d(LOG_TAG,"intent, on data set changed ,");
                 mcursor=getContentResolver().query(ScriptContract.ScriptEntry.CONTENT_URI,null,null,null,null);
             }
 
@@ -62,7 +65,7 @@ public class ScriptWidgetService extends RemoteViewsService {
                 views.setTextViewText(R.id.title,mcursor.getString(MainActivityFragment.COLUMN_TITLE));
                 views.setTextViewText(R.id.content,mcursor.getString(MainActivityFragment.COLUMN_CONTENT));
                 final Intent fillIntent=new Intent();
-                fillIntent.setAction(MainActivityFragment.ACTION_DATA_UPDATED);
+                fillIntent.setAction(ACTION_DATA_UPDATED);
                 fillIntent.putExtra(ScriptContract.ScriptEntry.COLUMN_TITLE,mcursor.getString(MainActivityFragment.COLUMN_TITLE));
                 fillIntent.putExtra(ScriptContract.ScriptEntry.COLUMN_CONTENT,mcursor.getString(MainActivityFragment.COLUMN_CONTENT));
                 views.setOnClickFillInIntent(R.id.search_item, fillIntent);

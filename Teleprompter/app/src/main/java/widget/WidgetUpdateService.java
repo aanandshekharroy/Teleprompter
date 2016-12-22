@@ -18,7 +18,6 @@ public class WidgetUpdateService extends IntentService {
     /**
      * Creates an IntentService.  Invoked by your subclass's constructor.
      *
-     * @param name Used to name the worker thread, important only for debugging.
      */
     public WidgetUpdateService() {
         super("WidgetUpdateService");
@@ -30,8 +29,10 @@ public class WidgetUpdateService extends IntentService {
         AppWidgetManager appWidgetManager=AppWidgetManager.getInstance(this);
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(new ComponentName(this,
                 ScriptListWidget.class));
+        Log.d(LOG_TAG,"intent, appwidgetid length"+appWidgetIds.length);
         for (int appWidgetId : appWidgetIds) {
             // Construct the RemoteViews object
+            Log.d(LOG_TAG,"intent recieved - updating widgets");
             RemoteViews views = new RemoteViews(getPackageName(), R.layout.script_list_widget);
             views.setTextViewText(R.id.appwidget_text, getString(R.string.app_name));
             views.setRemoteAdapter(R.id.list_view_widget,new Intent(this,ScriptWidgetService.class));

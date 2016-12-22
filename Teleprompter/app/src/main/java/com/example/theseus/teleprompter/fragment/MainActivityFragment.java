@@ -35,8 +35,7 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
     private TextView mEmptyView;
     private Context mContext;
     private Cursor mCursor;
-    public static final String ACTION_DATA_UPDATED =
-            "com.example.theseus.teleprompter.ACTION_DATA_UPDATED";
+
     public MainActivityFragment() {
     }
     public static String[] SCRIPT_POJECTION=new String[]{
@@ -83,11 +82,6 @@ public class MainActivityFragment extends Fragment implements LoaderManager.Load
         getLoaderManager().initLoader(LOADER_ID,null,this);
         super.onActivityCreated(savedInstanceState);
 
-    }
-    public void updateWidget(){
-        Context context=mContext;
-        Intent dataUpdatedNotify=new Intent(ACTION_DATA_UPDATED).setPackage(context.getPackageName());
-        context.sendBroadcast(dataUpdatedNotify);
     }
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
