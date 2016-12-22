@@ -106,6 +106,7 @@ public class AddScriptActivityFragment extends Fragment {
 
 //        Log.d(LOG_TAG,"inserted uri: "+insertUri);
 //        Toast.makeText(getContext(),title,Toast.LENGTH_SHORT).show();
+        Log.d(LOG_TAG,"intent sent");
         updateWidget();
         getActivity().finish();
     }
