@@ -24,25 +24,26 @@ import static com.example.theseus.teleprompter.fragment.MainActivityFragment.COL
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchAdapterViewHolder> {
     private Context mContext;
     private Cursor mCursor;
+
     public SearchAdapter(Context context) {
-        mContext=context;
+        mContext = context;
     }
 
     public void swapCursor(Cursor data) {
-        mCursor=data;
+        mCursor = data;
         notifyDataSetChanged();
     }
 
     @Override
     public SearchAdapterViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.script_search_item,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.script_search_item, parent, false);
 
         return new SearchAdapterViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(SearchAdapterViewHolder holder, int position) {
-        if(mCursor!=null&&!mCursor.isClosed()){
+        if (mCursor != null && !mCursor.isClosed()) {
             mCursor.moveToPosition(position);
             holder.mTitleTextView.setText(mCursor.getString(COLUMN_TITLE));
             holder.mContentView.setText(mCursor.getString(COLUMN_CONTENT));
@@ -52,7 +53,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchAdap
 
     @Override
     public int getItemCount() {
-        if(mCursor==null){
+        if (mCursor == null) {
             return 0;
         }
         return mCursor.getCount();
@@ -61,20 +62,21 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchAdap
     public class SearchAdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         final TextView mTitleTextView;
         final TextView mContentView;
+
         public SearchAdapterViewHolder(View itemView) {
             super(itemView);
-            mTitleTextView =(TextView) itemView.findViewById(R.id.title);
-            mContentView=(TextView)itemView.findViewById(R.id.content);
+            mTitleTextView = (TextView) itemView.findViewById(R.id.title);
+            mContentView = (TextView) itemView.findViewById(R.id.content);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            int pos=getAdapterPosition();
+            int pos = getAdapterPosition();
             mCursor.moveToPosition(pos);
-            Intent detailActivity=new Intent(mContext,DetailActivity.class);
-            detailActivity.putExtra(ScriptContract.ScriptEntry.COLUMN_TITLE,mCursor.getString(COLUMN_TITLE));
-            detailActivity.putExtra(ScriptContract.ScriptEntry.COLUMN_CONTENT,mCursor.getString(COLUMN_CONTENT));
+            Intent detailActivity = new Intent(mContext, DetailActivity.class);
+            detailActivity.putExtra(ScriptContract.ScriptEntry.COLUMN_TITLE, mCursor.getString(COLUMN_TITLE));
+            detailActivity.putExtra(ScriptContract.ScriptEntry.COLUMN_CONTENT, mCursor.getString(COLUMN_CONTENT));
             mContext.startActivity(detailActivity);
         }
     }

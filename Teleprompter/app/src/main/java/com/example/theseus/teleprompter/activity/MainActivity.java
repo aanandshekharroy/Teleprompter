@@ -19,24 +19,25 @@ import com.google.android.gms.ads.AdView;
 public class MainActivity extends AppCompatActivity {
     private Context mContext;
     private AdView mAdView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ((MyApplication)getApplication()).startTracking();
-        mAdView=(AdView)findViewById(R.id.adView);
-        AdRequest adRequest=new AdRequest.Builder().build();
+        ((MyApplication) getApplication()).startTracking();
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mContext=this;
+        mContext = this;
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                Intent addScriptIntent=new Intent(mContext,AddScriptActivity.class);
+                Intent addScriptIntent = new Intent(mContext, AddScriptActivity.class);
                 startActivity(addScriptIntent);
 //                addScriptIntent.
             }
@@ -58,12 +59,12 @@ public class MainActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        switch (id){
+        switch (id) {
             case R.id.action_settings:
-                startActivity(new Intent(this,SettingsActivity.class));
+                startActivity(new Intent(this, SettingsActivity.class));
                 return true;
             case R.id.search_menu:
-                Intent searchIntent=new Intent(mContext, SearchActivity.class);
+                Intent searchIntent = new Intent(mContext, SearchActivity.class);
                 mContext.startActivity(searchIntent);
                 return true;
         }

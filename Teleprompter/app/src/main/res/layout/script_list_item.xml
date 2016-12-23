@@ -6,11 +6,13 @@
     android:background="?android:attr/selectableItemBackground"
 
     xmlns:android="http://schemas.android.com/apk/res/android">
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:orientation="vertical"
                   android:id="@+id/list_item_text_container"
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/title"
             android:padding="10dp"
@@ -22,6 +24,7 @@
             android:ellipsize="marquee"
             android:layout_height="wrap_content"
             android:textSize="@dimen/medium_text"/>
+
         <TextView
             android:id="@+id/content"
             android:padding="10dp"
@@ -34,6 +37,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/small_text"/>
     </LinearLayout>
+
     <LinearLayout
         android:background="@color/colorPrimary"
         android:orientation="horizontal"
@@ -42,6 +46,7 @@
         android:layout_width="match_parent"
         android:visibility="gone"
         android:layout_height="match_parent">
+
         <ImageButton
             android:id="@+id/image_button_edit"
             android:layout_margin="@dimen/activity_horizontal_margin"
@@ -52,6 +57,7 @@
             android:background="@null"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"/>
+
         <ImageButton
             android:layout_gravity="center"
             android:layout_margin="@dimen/activity_horizontal_margin"

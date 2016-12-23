@@ -31,7 +31,7 @@ import butterknife.OnClick;
  */
 public class AddScriptActivityFragment extends Fragment {
 
-    private String LOG_TAG=AddScriptActivityFragment.class.getSimpleName();
+    private String LOG_TAG = AddScriptActivityFragment.class.getSimpleName();
     @BindView(R.id.add_title)
     EditText editTitle;
     @BindView(R.id.add_content)
@@ -40,10 +40,13 @@ public class AddScriptActivityFragment extends Fragment {
     Button saveButton;
     public static final String ACTION_DATA_UPDATED =
             "com.example.theseus.teleprompter.widget.ACTION_DATA_UPDATED";
+
     public AddScriptActivityFragment() {
     }
-    private int editMode=0;
-    private long _id=-1;
+
+    private int editMode = 0;
+    private long _id = -1;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,60 +57,55 @@ public class AddScriptActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =inflater.inflate(R.layout.fragment_add_script, container, false);
-        ButterKnife.bind(this,view);
-        Intent editScript=getActivity().getIntent();
-        if(editScript!=null){
+        View view = inflater.inflate(R.layout.fragment_add_script, container, false);
+        ButterKnife.bind(this, view);
+        Intent editScript = getActivity().getIntent();
+        if (editScript != null) {
 //            getActivity().
 
-            editMode=1;
-            if(editScript.hasExtra(ScriptContract.ScriptEntry._ID)){
-                _id=editScript.getLongExtra(ScriptContract.ScriptEntry._ID,-1);
+            editMode = 1;
+            if (editScript.hasExtra(ScriptContract.ScriptEntry._ID)) {
+                _id = editScript.getLongExtra(ScriptContract.ScriptEntry._ID, -1);
             }
-            if(editScript.hasExtra(ScriptContract.ScriptEntry.COLUMN_TITLE)){
+            if (editScript.hasExtra(ScriptContract.ScriptEntry.COLUMN_TITLE)) {
                 editTitle.setText(editScript.getStringExtra(ScriptContract.ScriptEntry.COLUMN_TITLE));
             }
-            if(editScript.hasExtra(ScriptContract.ScriptEntry.COLUMN_CONTENT)){
+            if (editScript.hasExtra(ScriptContract.ScriptEntry.COLUMN_CONTENT)) {
                 addContent.setText(editScript.getStringExtra(ScriptContract.ScriptEntry.COLUMN_CONTENT));
             }
         }
         return view;
     }
-    public void updateWidget(){
-        Context context=getContext();
-        Intent dataUpdatedNotify=new Intent(ACTION_DATA_UPDATED).setPackage(context.getPackageName());
+
+    public void updateWidget() {
+        Context context = getContext();
+        Intent dataUpdatedNotify = new Intent(ACTION_DATA_UPDATED).setPackage(context.getPackageName());
         context.sendBroadcast(dataUpdatedNotify);
     }
-    @OnClick (R.id.save_button)
-    public void saveScript(){
-        if(editTitle.getText().toString().length()<1||addContent.getText().toString().length()<1){
-            Toast.makeText(getContext(),getString(R.string.add_text_warning),Toast.LENGTH_SHORT).show();
+
+    @OnClick(R.id.save_button)
+    public void saveScript() {
+        if (editTitle.getText().toString().length() < 1 || addContent.getText().toString().length() < 1) {
+            Toast.makeText(getContext(), getString(R.string.add_text_warning), Toast.LENGTH_SHORT).show();
             return;
         }
-        String title= String.valueOf(editTitle.getText());
-        String content= String.valueOf(addContent.getText());
-        ContentValues values=new ContentValues();
-        values.put(ScriptContract.ScriptEntry.COLUMN_TITLE,title);
-        values.put(ScriptContract.ScriptEntry.COLUMN_CONTENT,content);
+        String title = String.valueOf(editTitle.getText());
+        String content = String.valueOf(addContent.getText());
+        ContentValues values = new ContentValues();
+        values.put(ScriptContract.ScriptEntry.COLUMN_TITLE, title);
+        values.put(ScriptContract.ScriptEntry.COLUMN_CONTENT, content);
 
-        if(editMode==1&&_id!=-1){
-            int update=getContext().getContentResolver().update(ScriptContract.ScriptEntry.buildUriFromId(_id),values,null,null);
-            Log.d(LOG_TAG,"updated:"+update);
-        }else{
-            Uri insertUri=getContext().getContentResolver().insert(ScriptContract.ScriptEntry.CONTENT_URI,values);
-            Tracker tracker=((MyApplication)getActivity().getApplication()).getTracker();
+        if (editMode == 1 && _id != -1) {
+            int update = getContext().getContentResolver().update(ScriptContract.ScriptEntry.buildUriFromId(_id), values, null, null);
+        } else {
+            Uri insertUri = getContext().getContentResolver().insert(ScriptContract.ScriptEntry.CONTENT_URI, values);
+            Tracker tracker = ((MyApplication) getActivity().getApplication()).getTracker();
             tracker.send(new HitBuilders.EventBuilder()
-            .setCategory("Add script")
-            .setAction("Script added")
-            .setLabel("Added script")
-            .build());
+                    .setCategory("Add script")
+                    .setAction("Script added")
+                    .setLabel("Added script")
+                    .build());
         }
-
-
-
-//        Log.d(LOG_TAG,"inserted uri: "+insertUri);
-//        Toast.makeText(getContext(),title,Toast.LENGTH_SHORT).show();
-        Log.d(LOG_TAG,"intent sent");
         updateWidget();
         getActivity().finish();
     }

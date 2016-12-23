@@ -1,13 +1,14 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@null"
-                android:padding="@dimen/widget_margin">
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@null"
+             android:padding="@dimen/widget_margin">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:padding="@dimen/activity_horizontal_margin"
             android:background="@color/colorPrimary"
@@ -16,6 +17,7 @@
             android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
         <ListView
             android:background="@color/white"
             android:id="@+id/list_view_widget"

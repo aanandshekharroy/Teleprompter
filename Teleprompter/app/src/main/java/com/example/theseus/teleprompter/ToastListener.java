@@ -11,22 +11,24 @@ import com.google.android.gms.ads.AdRequest;
  */
 
 public class ToastListener extends AdListener {
-    private String mError="";
+    private String mError = "";
     private Context mContext;
-    public ToastListener(Context context){
-        this.mContext=context;
+
+    public ToastListener(Context context) {
+        this.mContext = context;
     }
+
     @Override
     public void onAdFailedToLoad(int errorCode) {
-        switch (errorCode){
+        switch (errorCode) {
             case AdRequest.ERROR_CODE_INTERNAL_ERROR:
-                mError="Internal Error";
+                mError = "Internal Error";
                 break;
             case AdRequest.ERROR_CODE_NETWORK_ERROR:
-                mError="Network Error";
+                mError = "Network Error";
                 break;
         }
-        Toast.makeText(mContext,mError,Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, mError, Toast.LENGTH_SHORT).show();
 //        super.onAdFailedToLoad(i);
     }
 }

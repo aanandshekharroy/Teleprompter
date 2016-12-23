@@ -20,17 +20,19 @@
         android:paddingTop="@dimen/activity_vertical_margin"
         tools:context="com.example.theseus.teleprompter.fragment.DetailActivityFragment"
         tools:showIn="@layout/activity_detail">
-            <TextView
-                android:id="@+id/content"
-                android:textColor="@color/white"
-                android:scrollbars = "vertical"
-                android:gravity="bottom"
-                android:textSize="@dimen/large_text"
-                android:lineSpacingMultiplier="1.5"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/content"
+            android:textColor="@color/white"
+            android:scrollbars="vertical"
+            android:gravity="bottom"
+            android:textSize="@dimen/large_text"
+            android:lineSpacingMultiplier="1.5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </ScrollView>
+
     <LinearLayout
         android:id="@+id/linear_layouts_tools"
         android:orientation="vertical"
@@ -38,6 +40,7 @@
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <LinearLayout
             android:id="@+id/linear_layout_seekbar_container"
             android:visibility="gone"
@@ -46,29 +49,35 @@
             android:background="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:text="@string/speed"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
             <SeekBar
                 android:id="@+id/seekbar_speed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
             <TextView
                 android:text="@string/text_size"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
             <SeekBar
                 android:id="@+id/seekbar_text_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
             <TextView
                 android:text="@string/line_spacing"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
             <SeekBar
                 android:id="@+id/seekbar_line_height"
                 android:layout_width="match_parent"
@@ -82,6 +91,7 @@
             android:layout_width="match_parent"
             android:background="@color/colorPrimary"
             android:layout_height="wrap_content">
+
             <ImageButton
                 android:padding="@dimen/activity_horizontal_margin"
                 android:background="@null"
@@ -90,6 +100,7 @@
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
             <ImageButton
                 android:padding="@dimen/activity_horizontal_margin"
                 android:id="@+id/image_button_setting"
@@ -99,7 +110,6 @@
                 android:layout_height="wrap_content"/>
 
         </LinearLayout>
-
 
 
     </LinearLayout>

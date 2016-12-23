@@ -73,7 +73,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.theseus.teleprompter.activity.MainActivity"/>
         </activity>
-        <receiver android:name="widget.ScriptListWidget" android:enabled="true"
+
+        <receiver
+            android:name="widget.ScriptListWidget"
+            android:enabled="true"
             >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -84,8 +87,10 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/script_list_widget_info"/>
         </receiver>
-        <service android:name="widget.ScriptWidgetService"
-                 android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
+        <service
+            android:name="widget.ScriptWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
         <service android:name="widget.WidgetUpdateService"/>
 
     </application>

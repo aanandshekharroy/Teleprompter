@@ -25,37 +25,38 @@ import com.example.theseus.teleprompter.fragment.MainActivityFragment;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener,LoaderManager.LoaderCallbacks<Cursor> {
-    int LOADER_ID=1;
-    private static final String LOG_TAG=SearchActivity.class.getSimpleName();
+public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener, LoaderManager.LoaderCallbacks<Cursor> {
+    int LOADER_ID = 1;
+    private static final String LOG_TAG = SearchActivity.class.getSimpleName();
     private Context mContext;
-    private String mQuery="";
+    private String mQuery = "";
     private SearchAdapter mSearchAdapter;
     private RecyclerView mRecyclerView;
     private AdView mAdView;
-    public static String[] SCRIPT_POJECTION=new String[]{
+    public static String[] SCRIPT_POJECTION = new String[]{
             ScriptContract.ScriptEntry._ID,
             ScriptContract.ScriptEntry.COLUMN_TITLE,
             ScriptContract.ScriptEntry.COLUMN_CONTENT
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        mAdView=(AdView)findViewById(R.id.adView);
-        AdRequest adRequest=new AdRequest.Builder().build();
+        mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        mContext=this;
-        mSearchAdapter=new SearchAdapter(mContext);
-        mRecyclerView=(RecyclerView)findViewById(R.id.recycler_view);
+        mContext = this;
+        mSearchAdapter = new SearchAdapter(mContext);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(mSearchAdapter);
         mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(this));
 
-        getLoaderManager().initLoader(LOADER_ID,null, this);
+        getLoaderManager().initLoader(LOADER_ID, null, this);
     }
 
     @Override
@@ -79,32 +80,31 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     public boolean onQueryTextSubmit(String query) {
-        mQuery=query;
+        mQuery = query;
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        mQuery=newText;
-        getLoaderManager().restartLoader(LOADER_ID,null,this);
+        mQuery = newText;
+        getLoaderManager().restartLoader(LOADER_ID, null, this);
         return false;
     }
 
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
-        return new CursorLoader(mContext, ScriptContract.ScriptEntry.buildUriFromKey(mQuery),SCRIPT_POJECTION,null,null,null);
+        return new CursorLoader(mContext, ScriptContract.ScriptEntry.buildUriFromKey(mQuery), SCRIPT_POJECTION, null, null, null);
     }
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        Log.d(LOG_TAG,"data count: "+data);
-        if(data!=null){
-            Log.d(LOG_TAG,"data count--: "+data.getCount());
-            if(mQuery.length()>0){
+        if (data != null) {
+            if (mQuery.length() > 0) {
                 mSearchAdapter.swapCursor(data);
-            }else{
+            } else {
                 mSearchAdapter.swapCursor(null);
             }
 

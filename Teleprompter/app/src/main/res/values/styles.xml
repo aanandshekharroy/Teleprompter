@@ -27,7 +27,7 @@
         <item name="windowNoTitle">true</item>
     </style>
     <!--<style name="AppTheme.NoTitleBar.Fullscreen">-->
-        <!--"android:windowSoftInputMode=adjustResize"-->
+    <!--"android:windowSoftInputMode=adjustResize"-->
     <!--</style>-->
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 

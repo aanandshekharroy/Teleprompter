@@ -16,6 +16,7 @@ import com.google.android.gms.ads.AdView;
 
 public class AddScriptActivity extends AppCompatActivity {
     private AdView mAdView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,13 +24,13 @@ public class AddScriptActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Intent editIntent=getIntent();
-        if(editIntent!=null&&editIntent.hasExtra(ScriptContract.ScriptEntry._ID)){
+        Intent editIntent = getIntent();
+        if (editIntent != null && editIntent.hasExtra(ScriptContract.ScriptEntry._ID)) {
             getSupportActionBar().setTitle(getString(R.string.edit_script_title_bar));
         }
-        mAdView=(AdView)findViewById(R.id.adView);
+        mAdView = (AdView) findViewById(R.id.adView);
         mAdView.setAdListener(new ToastListener(this));
-        AdRequest adRequest=new AdRequest.Builder().build();
+        AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
     }
 

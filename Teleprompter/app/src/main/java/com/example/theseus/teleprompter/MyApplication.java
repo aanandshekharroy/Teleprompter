@@ -14,15 +14,17 @@ import java.util.logging.Level;
 
 public class MyApplication extends Application {
     public Tracker mTracker;
-    public void startTracking(){
-        if(mTracker==null){
-            GoogleAnalytics ga=GoogleAnalytics.getInstance(this);
-            mTracker=ga.newTracker(R.xml.track_app);
+
+    public void startTracking() {
+        if (mTracker == null) {
+            GoogleAnalytics ga = GoogleAnalytics.getInstance(this);
+            mTracker = ga.newTracker(R.xml.track_app);
             ga.enableAutoActivityReports(this);
             ga.getLogger().setLogLevel(Logger.LogLevel.VERBOSE);
         }
     }
-    public Tracker getTracker(){
+
+    public Tracker getTracker() {
         startTracking();
         return mTracker;
     }

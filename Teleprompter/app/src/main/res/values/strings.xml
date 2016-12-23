@@ -5,6 +5,7 @@
     <!--<string name="add_script">Add Script</string>-->
     <string name="edit_script_title_bar">Edit Script</string>
     <string name="add_script">Add Script</string>
+    <string name="add_script_empty_view">Add script to get started</string>
     <string name="title">Title</string>
     <string name="content">Content</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>

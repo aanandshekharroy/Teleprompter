@@ -26,5 +26,4 @@
     <include layout="@layout/content_add_script"/>
 
 
-
 </android.support.design.widget.CoordinatorLayout>

@@ -4,13 +4,15 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent">
+
     <TextView
         android:id="@+id/empty_view"
         android:visibility="gone"
-        android:text="Add script to get started"
+        android:text="@string/add_script_empty_view"
         android:textSize="@dimen/medium_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
     <android.support.v7.widget.RecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -21,7 +23,6 @@
         android:layout_height="wrap_content"
 
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
 
 
 </LinearLayout>
